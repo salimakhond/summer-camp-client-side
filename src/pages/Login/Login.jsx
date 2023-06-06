@@ -24,14 +24,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" {...register("password", {
-                                required: true,
-                                minLength: 6,
-                                pattern: /^(?=.*[A-Z])(?=.*[!@#$&*]).*$/,
-                            })} name='password' placeholder="Password" className="input input-bordered" />
-                            {errors.password?.type === 'required' && <p className="text-error mt-2">Password is required</p>}
-                            {errors.password?.type === 'minLength' && <p className="text-error mt-2">Your password less than 6 characters</p>}
-                            {errors.password?.type === 'pattern' && <p className="text-error mt-2">Your password must have one capital letter and one special character.</p>}
+                            <input type="password" {...register("password", { required: true })} name='password' placeholder="Password" className="input input-bordered" />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
