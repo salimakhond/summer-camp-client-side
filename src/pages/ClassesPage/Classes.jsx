@@ -18,7 +18,7 @@ const Classes = ({ classItem }) => {
             <div className="bg-base-200 rounded-lg">
                 <div className=" p-5">
                     <div className="w-full">
-                        <img className=" rounded-lg h-[300px]" src={image} alt="Toy" />
+                        <img className=" rounded-lg h-[300px]" src={image} alt="classItemImg" />
                     </div>
                     <div className="w-full mt-5">
                         <h2 className="text-2xl text-[#181D4E] font-bold">{name}</h2>
