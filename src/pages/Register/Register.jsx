@@ -8,12 +8,10 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const { createNewUser, UpdateUserData } = useContext(AuthContext);
     const [success, setSuccess] = useState('');
 
     const [registerError, setRegisterError] = useState('')
-
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {

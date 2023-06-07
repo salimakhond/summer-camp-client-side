@@ -1,11 +1,63 @@
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    console.log(watch("example"));
+    const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    const { logIn, googleSignIn } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+        logIn(data.email, data.password)
+            .then(result => {
+                const signInUser = result.user;
+                console.log(signInUser);
+                reset();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error.message);
+                setError(error.message)
+            })
+    };
+
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const logInUser = result.user;
+                console.log(logInUser);
+                navigate(from, { replace: true });
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User Login Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            })
+    }
 
     return (
         <div className="px-5 py-[50px] md:py-[80px] lg:py-[130px] bg-white">
@@ -24,7 +76,16 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" {...register("password", { required: true })} name='password' placeholder="Password" className="input input-bordered" />
+                            <div className="relative">
+                                <input type={showPassword ? 'text' : 'password'} {...register("password", { required: true })} name='password' placeholder="Password" className="input input-bordered w-full pr-10" />
+                                <button
+                                    type="button"
+                                    className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                                    onClick={() => setShowPassword(show => !show)}
+                                >
+                                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                                </button>
+                            </div>
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -38,12 +99,11 @@ const Login = () => {
                     </p>
                     <div className="divider">OR</div>
                     <div className="text-center">
-                        <button className=" btn btn-circle btn-outline btn-error hover:text-white">
+                        <button onClick={handleGoogleSignIn} className=" btn btn-circle btn-outline btn-error hover:text-white">
                             <FaGoogle></FaGoogle>
                         </button>
                     </div>
-                    <p className="text-success text-center">success</p>
-                    <p className="text-error text-center">error</p>
+                    <p className="text-error text-center">{error}</p>
                 </div>
             </div>
         </div>

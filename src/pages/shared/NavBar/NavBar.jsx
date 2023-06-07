@@ -1,22 +1,23 @@
-// import { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUserCircle } from 'react-icons/fa';
 
 
 
 const NavBar = () => {
-    // const { user, logOut } = useContext(AuthContext);
+
+    const { user, logOut } = useContext(AuthContext);
 
     const handleLogout = () => {
-        // logOut()
-        //     .then()
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error)
+            })
     }
 
-    const user = null
+
 
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
