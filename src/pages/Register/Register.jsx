@@ -1,10 +1,39 @@
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const { createNewUser, UpdateUserData } = useContext(AuthContext);
+    const [success, setSuccess] = useState('');
+
+    const [registerError, setRegisterError] = useState('')
+
+
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        createNewUser(data.email, data.password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+                setSuccess('Create a User Successfully Done')
+                UpdateUserData(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('User Data Update');
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        setRegisterError(error.message);
+                    })
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
 
     return (
@@ -39,36 +68,53 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password", {
-                                    required: true,
-                                    minLength: 6,
-                                    pattern: /^(?=.*[A-Z])(?=.*[!@#$&*]).*$/,
-                                })} name='password' placeholder="Password" className="input input-bordered" />
-                                {errors.password?.type === 'required' && <p className="text-error mt-2">Password is required</p>}
-                                {errors.password?.type === 'minLength' && <p className="text-error mt-2">Your password less than 6 characters</p>}
-                                {errors.password?.type === 'pattern' && <p className="text-error mt-2">Your password must have one capital letter and one special character.</p>}
-
+                                <div className="relative">
+                                    <input type={showPassword ? 'text' : 'password'} {...register("password", {
+                                        required: true,
+                                        minLength: 6,
+                                        pattern: /^(?=.*[A-Z])(?=.*[!@#$&*]).*$/,
+                                    })} name='password' placeholder="Password" className="input input-bordered w-full pr-10" />
+                                    {errors.password?.type === 'required' && <p className="text-error mt-2">Password is required</p>}
+                                    {errors.password?.type === 'minLength' && <p className="text-error mt-2">Your password less than 6 characters</p>}
+                                    {errors.password?.type === 'pattern' && <p className="text-error mt-2">Your password must have one capital letter and one special character.</p>}
+                                    <button
+                                        type="button"
+                                        className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                                        onClick={() => setShowPassword(show => !show)}
+                                    >
+                                        {showPassword ? <FaEye /> : <FaEyeSlash />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input
-                                    type="password"
-                                    {...register("confirmPassword", {
-                                        required: true,
-                                        validate: (value) =>
-                                            value === watch("password") ||
-                                            "Passwords do not match",
-                                    })}
-                                    name="confirmPassword"
-                                    placeholder="Confirm Password"
-                                    className="input input-bordered"
-                                    required
-                                />
-                                {errors.confirmPassword && (
-                                    <p className="text-error mt-2">Passwords do not match</p>
-                                )}
+                                <div className="relative">
+                                    <input
+                                        type={showConfirmPassword ? 'text' : 'password'}
+                                        {...register("confirmPassword", {
+                                            required: true,
+                                            validate: (value) =>
+                                                value === watch("password") ||
+                                                "Passwords do not match",
+                                        })}
+                                        name="confirmPassword"
+                                        placeholder="Confirm Password"
+                                        className="input input-bordered w-full pr-10"
+                                        required
+                                    />
+                                    {errors.confirmPassword && (
+                                        <p className="text-error mt-2">Passwords do not match</p>
+                                    )}
+                                    <button
+                                        type="button"
+                                        className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                                        onClick={() => setShowConfirmPassword(show => !show)}
+                                    >
+                                        {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                                    </button>
+                                </div>
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover mt-3">Forgot password?</a>
                                 </label>
@@ -80,8 +126,8 @@ const Register = () => {
                         <p className='my-5 text-center'>All Ready Have An Account ?
                             <Link className='text-orange-500 font-bold ml-3' to='/login'>Login</Link>
                         </p>
-                        <p className="text-success text-center">success</p>
-                        <p className="text-error text-center">registerError</p>
+                        <p className="text-success text-center">{success}</p>
+                        <p className="text-error text-center">{registerError}</p>
                     </div>
                 </div>
             </div>
