@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "image": "https://img1.wsimg.com/isteam/ip/cf188f46-e998-457c-88fc-5b45ed8bb94c/blob-7494d04.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25",
+        "name": "Badminton",
+        "instructor": "John Doe",
+        "seats": 10,
+        "price": 99.99,
+        "status": "approved"
+    },
+    {
+        "id": 2,
+        "image": "https://www.nbccamps.com/media/images/sports/basketball/BasketballCampAnchorageAlaskaNBCCampsBoysYouthGirlsYouth3.jpeg",
+        "name": "Basketball",
+        "instructor": "Jane Smith",
+        "seats": 5,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 3,
+        "image": "https://tennisdynamics.net/wp-content/uploads/pic_page_summercamps.jpg",
+        "name": "Tennis",
+        "instructor": "Walter white",
+        "seats": 6,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 4,
+        "image": "https://ymcagbw.org/sites/default/files/2019-03/by_thank_you_reception_cover_shot.jpg",
+        "name": "Swimming",
+        "instructor": "Heisenberg",
+        "seats": 3,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 5,
+        "image": "https://uploads-ssl.webflow.com/5363d7f1badb90df30000023/5a5d0b306b273e0001a426df_kids%20main.jpg",
+        "name": "Martial Arts",
+        "instructor": "John snow",
+        "seats": 2,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 6,
+        "image": "https://aussiekids.com/wp-content/uploads/2016/05/golf-summer-camp.jpg",
+        "name": "Golf",
+        "instructor": "Berlin",
+        "seats": 7,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 7,
+        "image": "https://www.shelbycountyreporter.com/wp-content/uploads/sites/20/2017/06/Helena-Volleyball-Camp-11.jpg?w=524",
+        "name": "Volleyball",
+        "instructor": "Rio",
+        "seats": 8,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 8,
+        "image": "https://www.spartanssportscamp.com/images/camp/trackandfield006.jpg",
+        "name": "Track and Field Training",
+        "instructor": "Smith",
+        "seats": 13,
+        "price": 129.99,
+        "status": "approved"
+    },
+    {
+        "id": 9,
+        "image": "https://img.freepik.com/premium-photo/two-school-boys-are-running-ladder-drills-turf-during-football-summer-camp-intense-soccer-training-with-coach_141188-5498.jpg",
+        "name": "Soccer Training",
+        "instructor": "Rabada",
+        "seats": 12,
+        "price": 129.99,
+        "status": "approved"
+    }
+]
