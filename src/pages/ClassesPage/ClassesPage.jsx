@@ -11,9 +11,7 @@ const ClassesPage = () => {
             .then(res => res.json())
             .then(data => setClasses(data))
     }, [])
-
-
-    console.log(classes)
+    
 
     return (
         <div className="px-5 my-10">
