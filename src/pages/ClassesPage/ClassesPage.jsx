@@ -7,7 +7,7 @@ const ClassesPage = () => {
 
 
     useEffect(() => {
-        fetch('classes.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => setClasses(data))
     }, [])
@@ -21,7 +21,7 @@ const ClassesPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         classes.map(classItem => <Classes
-                            key={classItem.id}
+                            key={classItem._id}
                             classItem={classItem}
                         ></Classes>)
                     }

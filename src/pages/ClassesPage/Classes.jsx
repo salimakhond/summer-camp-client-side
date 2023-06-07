@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Classes = ({ classItem }) => {
-    const { id, image, name, instructor, seats, price } = classItem;
+    const { _id, image, name, instructor, seats, price } = classItem;
     const { user } = useContext(AuthContext)
     const isAdminOrInstructor = true;
     const handleSelectClass = (id) => {
@@ -26,7 +26,7 @@ const Classes = ({ classItem }) => {
                         <p className="text-[#646672] my-3 text-lg font-semibold">Available seats : {seats}</p>
                         <p className="text-[#646672] my-3 text-lg font-semibold">Price : ${price}</p>
                         <button
-                            onClick={() => handleSelectClass(id)}
+                            onClick={() => handleSelectClass(_id)}
                             disabled={classItem.seats === 0 && isAdminOrInstructor === true}
                             className="btn btn-primary">
                             {classItem.seats === 0 ? 'sold out' : 'select'}
