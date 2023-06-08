@@ -1,17 +1,53 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Classes = ({ classItem }) => {
     const { _id, image, name, instructor, seats, price } = classItem;
     const { user } = useContext(AuthContext)
-    const isAdminOrInstructor = true;
-    const handleSelectClass = (id) => {
-        if (!user) {
-            alert('please login first')
-            return
-        }
+    const navigate = useNavigate();
+    const location = useLocation();
 
-        console.log(id)
+    const handleBookingClass = (classItem) => {
+        if (user && user.email) {
+            const cartItem = { classId: _id, image, name, instructor, price, email: user.email }
+            fetch('http://localhost:5000/booking', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(cartItem)
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.insertedId) {
+                        // refetch(); // refetch cart to update the number of items in the cart
+                        Swal.fire(
+                            'Your item added successfully!',
+                            'You clicked the button!',
+                            'success'
+                        )
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login first!!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
+        console.log(classItem)
     }
     return (
         <div>
@@ -26,10 +62,10 @@ const Classes = ({ classItem }) => {
                         <p className="text-[#646672] my-3 text-lg font-semibold">Available seats : {seats}</p>
                         <p className="text-[#646672] my-3 text-lg font-semibold">Price : ${price}</p>
                         <button
-                            onClick={() => handleSelectClass(_id)}
-                            disabled={classItem.seats === 0 && isAdminOrInstructor === true}
+                            onClick={() => handleBookingClass(classItem)}
+                            disabled={classItem.seats === 0 && user === true}
                             className="btn btn-primary">
-                            {classItem.seats === 0 ? 'sold out' : 'select'}
+                            {classItem.seats === 0 ? 'sold out' : 'Booking'}
                         </button>
                     </div>
                 </div>

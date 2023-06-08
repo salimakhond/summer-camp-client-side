@@ -4,7 +4,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { saveUser } from "../../api/saveUser";
+// import { saveUser } from "../../api/saveUser";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -18,8 +18,6 @@ const Login = () => {
     const [error, setError] = useState('');
 
 
-    
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -27,7 +25,6 @@ const Login = () => {
             .then(result => {
                 const signInUser = result.user;
                 console.log(signInUser);
-                saveUser(signInUser)
                 reset();
                 Swal.fire({
                     position: 'top-end',
@@ -50,15 +47,27 @@ const Login = () => {
             .then(result => {
                 const logInUser = result.user;
                 console.log(logInUser);
-                saveUser(logInUser);
-                navigate(from, { replace: true });
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'User Login Successful',
-                    showConfirmButton: false,
-                    timer: 1500
+
+                const saveUser = { name: logInUser.displayName, email: logInUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        navigate(from, { replace: true });
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'User Login Successful',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
             })
             .catch(error => {
                 console.log('error', error.message);
