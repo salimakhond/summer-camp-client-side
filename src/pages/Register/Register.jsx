@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = () => {
 
@@ -22,12 +23,30 @@ const Register = () => {
                 console.log(createdUser);
                 setSuccess('Create a User Successfully Done')
 
-                navigate('/login');
-                logOut();
-
                 UpdateUserData(data.name, data.photoURL)
                     .then(() => {
-                        console.log('User Data Update');
+                        navigate('/login');
+                        logOut();
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data)
+                                if (data.insertedId) {
+                                    Swal.fire(
+                                        'user profile update!',
+                                        'You clicked the button!',
+                                        'success'
+                                    )
+                                }
+                            })
+
                     })
                     .catch(error => {
                         console.error(error.message);

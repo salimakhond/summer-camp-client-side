@@ -1,15 +1,16 @@
+import { useContext } from 'react';
 import { FaHome, FaShoppingCart, FaUsers, FaWallet } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Dashboard = () => {
 
 
     const isAdmin = true;
+    const { user } = useContext(AuthContext);
+    console.log(user)
     return (
         <div className='container mx-auto'>
-
-
-
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col p-5 lg:p-10">
@@ -24,7 +25,7 @@ const Dashboard = () => {
                         {
                             isAdmin ? <>
                                 <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to='/dashboard/manageitems'><FaWallet></FaWallet> Manage Items</NavLink></li>
+                                <li><NavLink to='/dashboard/addaclass'><FaWallet></FaWallet>Add A Class</NavLink></li>
                                 <li><NavLink to='/dashboard/allusers'><FaUsers></FaUsers> All Users</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard'><FaHome></FaHome> User Home</NavLink></li>

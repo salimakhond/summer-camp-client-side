@@ -7,6 +7,7 @@ import ClassesPage from "../pages/ClassesPage/ClassesPage";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import Dashboard from "../layout/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AddAClass from "../pages/Dashboard/AddAClass/AddAClass";
 
 const router = createBrowserRouter([
     {
@@ -57,11 +58,11 @@ const router = createBrowserRouter([
                 path: 'allusers',
                 element: <AllUsers></AllUsers>
             },
-            // {
-            //     path: 'addItem',
-            //     element: <AdminRoute><AddItem></AddItem></AdminRoute>
+            {
+                path: 'addaclass',
+                element: <AddAClass></AddAClass>
 
-            // },
+            },
             // {
             //     path: 'manageitems',
             //     element: <AdminRoute><ManageItems></ManageItems></AdminRoute>

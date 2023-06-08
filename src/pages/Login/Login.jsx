@@ -4,7 +4,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { saveUser } from "../../api/AuthApi";
+import { saveUser } from "../../api/saveUser";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);

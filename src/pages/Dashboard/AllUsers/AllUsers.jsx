@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaUsers } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     // const users = true;
@@ -9,7 +10,68 @@ const AllUsers = () => {
             .then((res) => res.json())
             .then((data) => setUserData(data));
     }, []);
-    console.log(userData);
+    // console.log(userData);
+
+    const handleMakeUpdate = (user) => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount) {
+                    // User is now an admin
+                    // Update the user's role in the userData state
+                    const updatedData = userData.map((item) => {
+                        if (item._id === user._id) {
+                            return { ...item, role: 'admin' };
+                        }
+                        return item;
+                    });
+                    setUserData(updatedData);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is an Admin Now!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                }
+            });
+    };
+
+    const handleMakeInstructor = (user) => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount) {
+                    // User is now an instructor
+                    // Update the user's role in the userData state
+                    const updatedData = userData.map((item) => {
+                        if (item._id === user._id) {
+                            return { ...item, role: 'instructor' };
+                        }
+                        return item;
+                    });
+                    setUserData(updatedData);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is an Instructor Now!`,
+                        showConfirmButton: false,
+                        timer: 1500,
+                      });
+                }
+            });
+    };
+
+    const handleDelete = (user) => {
+        // Handle delete functionality
+        console.log(user)
+    };
+
+
 
     return (
         <div>
@@ -50,16 +112,39 @@ const AllUsers = () => {
                                     <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>
-                                        <button
-                                            className="btn bg-[#1867FE] text-white hover:text-black mr-3">Admin</button>
-                                        <button
-                                            className="btn bg-[#1867FE] text-white hover:text-black">Instructor</button>
-                                    </td>
-                                    <td>
-                                        <button className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
-                                    </td>
 
+                                    <td>
+                                        {user.role === 'admin' ? (
+                                            'admin'
+                                        ) : (
+                                            <button
+                                                onClick={() => handleMakeUpdate(user)}
+                                                className="btn bg-[#1867FE] text-white hover:text-black"
+                                            >
+                                                <FaUsers />
+                                            </button>
+                                        )}
+                                    </td>
+                                    <td>
+                                        {user.role === 'instructor' ? (
+                                            'instructor'
+                                        ) : (
+                                            <button
+                                                onClick={() => handleMakeInstructor(user)}
+                                                className="btn bg-[#1867FE] text-white hover:text-black"
+                                            >
+                                                Make Instructor
+                                            </button>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleDelete(user)}
+                                            className="btn bg-red-500 text-white hover:text-black"
+                                        >
+                                            <FaTrashAlt />
+                                        </button>
+                                    </td>
                                 </tr>)}
                         </tbody>
                     </table>
