@@ -1,12 +1,21 @@
+import { useEffect, useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 const AllUsers = () => {
-    const users = true;
+    // const users = true;
+    const [userData, setUserData] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:5000/users")
+            .then((res) => res.json())
+            .then((data) => setUserData(data));
+    }, []);
+    console.log(userData);
+
     return (
         <div>
             <div>
                 <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">
-                    <h3 className="text-2xl">Total Users: {users.length}</h3>
+                    <h3 className="text-2xl">Total Users: {userData.length}</h3>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full">
@@ -21,7 +30,7 @@ const AllUsers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr >
+                            {/* <tr >
                                 <th>{"index + 1"}</th>
                                 <td>{"user.name"}</td>
                                 <td>{"user.email"}</td>
@@ -34,7 +43,24 @@ const AllUsers = () => {
                                 <td>
                                     <button className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
-                            </tr>
+                            </tr> */}
+
+                            {userData.map((user, index) =>
+                                <tr key={user._id}>
+                                    <th>{index + 1}</th>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>
+                                        <button
+                                            className="btn bg-[#1867FE] text-white hover:text-black mr-3">Admin</button>
+                                        <button
+                                            className="btn bg-[#1867FE] text-white hover:text-black">Instructor</button>
+                                    </td>
+                                    <td>
+                                        <button className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
+                                    </td>
+
+                                </tr>)}
                         </tbody>
                     </table>
                 </div>
