@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -8,7 +8,8 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const { createNewUser, UpdateUserData } = useContext(AuthContext);
+    const { createNewUser, UpdateUserData, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [success, setSuccess] = useState('');
 
     const [registerError, setRegisterError] = useState('')
@@ -20,6 +21,10 @@ const Register = () => {
                 const createdUser = result.user;
                 console.log(createdUser);
                 setSuccess('Create a User Successfully Done')
+
+                navigate('/login');
+                logOut();
+
                 UpdateUserData(data.name, data.photoURL)
                     .then(() => {
                         console.log('User Data Update');

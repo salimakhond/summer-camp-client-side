@@ -4,6 +4,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/AuthApi";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,6 +17,9 @@ const Login = () => {
 
     const [error, setError] = useState('');
 
+
+    
+
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data)
@@ -23,6 +27,7 @@ const Login = () => {
             .then(result => {
                 const signInUser = result.user;
                 console.log(signInUser);
+                saveUser(signInUser)
                 reset();
                 Swal.fire({
                     position: 'top-end',
@@ -45,6 +50,7 @@ const Login = () => {
             .then(result => {
                 const logInUser = result.user;
                 console.log(logInUser);
+                saveUser(logInUser);
                 navigate(from, { replace: true });
                 Swal.fire({
                     position: 'top-end',

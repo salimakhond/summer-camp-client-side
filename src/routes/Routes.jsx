@@ -5,6 +5,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ClassesPage from "../pages/ClassesPage/ClassesPage";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
+import Dashboard from "../layout/Dashboard";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +36,44 @@ const router = createBrowserRouter([
 
         ]
     },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // {
+            //     path: 'userhome',
+            //     element:<UserHome></UserHome>
+            // },
+            // {
+            //     path: 'mycart',
+            //     element: <MyCart></MyCart>
+            // },
+            // // admin routes
+            // {
+            //     path: 'adminhome',
+            //     element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            // },
+            {
+                path: 'allusers',
+                element: <AllUsers></AllUsers>
+            },
+            // {
+            //     path: 'addItem',
+            //     element: <AdminRoute><AddItem></AddItem></AdminRoute>
+
+            // },
+            // {
+            //     path: 'manageitems',
+            //     element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+
+            // },
+            // {
+            //     path: '/dashboard/payment',
+            //     element: <Payment></Payment>
+
+            // }
+        ]
+    }
 ]);
 
 export default router;
