@@ -10,7 +10,7 @@ const AllUsers = () => {
     })
     console.log(userData)
 
-    const handleMakeUpdate = (user) => {
+    const handleMakeAdmin = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH',
         })
@@ -111,7 +111,7 @@ const AllUsers = () => {
                                             'Admin'
                                         ) : (
                                             <button
-                                                onClick={() => handleMakeUpdate(user)}
+                                                onClick={() => handleMakeAdmin(user)}
                                                 disabled={user.role === 'instructor' || user.role === 'admin'
                                                 }
                                                 className="btn bg-[#1867FE] text-white hover:text-black"
