@@ -34,7 +34,7 @@ const AllUsers = () => {
                         title: `${user.name} is an Admin Now!`,
                         showConfirmButton: false,
                         timer: 1500,
-                      });
+                    });
                 }
             });
     };
@@ -61,7 +61,7 @@ const AllUsers = () => {
                         title: `${user.name} is an Instructor Now!`,
                         showConfirmButton: false,
                         timer: 1500,
-                      });
+                    });
                 }
             });
     };
@@ -113,57 +113,46 @@ const AllUsers = () => {
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Roll</th>
-                                <th>Action</th>
+                                <th className='text-center'>Role</th>
+                                <th className='text-center'>Role</th>
+                                <th className='text-center'>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* <tr >
-                                <th>{"index + 1"}</th>
-                                <td>{"user.name"}</td>
-                                <td>{"user.email"}</td>
-                                <td>
-                                    <button
-                                        className="btn bg-[#1867FE] text-white hover:text-black mr-3">Admin</button>
-                                    <button
-                                        className="btn bg-[#1867FE] text-white hover:text-black">Instructor</button>
-                                </td>
-                                <td>
-                                    <button className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
-                                </td>
-                            </tr> */}
-
                             {userData.map((user, index) =>
                                 <tr key={user._id}>
                                     <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-
-                                    <td>
+                                    <td className='text-center'>
                                         {user.role === 'admin' ? (
-                                            'admin'
+                                            'Admin'
                                         ) : (
                                             <button
                                                 onClick={() => handleMakeUpdate(user)}
+                                                disabled={user.role === 'instructor' || user.role === 'admin'
+                                                }
                                                 className="btn bg-[#1867FE] text-white hover:text-black"
                                             >
                                                 <FaUsers />
                                             </button>
                                         )}
                                     </td>
-                                    <td>
+                                    <td className='text-center'>
                                         {user.role === 'instructor' ? (
-                                            'instructor'
+                                            'Instructor'
                                         ) : (
                                             <button
                                                 onClick={() => handleMakeInstructor(user)}
+                                                disabled={user.role === 'instructor' || user.role === 'admin'
+                                                }
                                                 className="btn bg-[#1867FE] text-white hover:text-black"
                                             >
                                                 Make Instructor
                                             </button>
                                         )}
                                     </td>
-                                    <td>
+                                    <td className='text-center'>
                                         <button
                                             onClick={() => handleDelete(user)}
                                             className="btn bg-red-500 text-white hover:text-black"

@@ -2,10 +2,11 @@ import { useContext } from 'react';
 import { FaHome, FaShoppingCart, FaUsers, FaWallet } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import useBooking from '../hooks/useBooking';
 
 const Dashboard = () => {
 
-
+    const [booking] = useBooking();
     const isAdmin = true;
     const { user } = useContext(AuthContext);
     console.log(user)
@@ -24,9 +25,14 @@ const Dashboard = () => {
 
                         {
                             isAdmin ? <>
-                                <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to='/dashboard/addaclass'><FaWallet></FaWallet>Add A Class</NavLink></li>
-                                <li><NavLink to='/dashboard/allusers'><FaUsers></FaUsers> All Users</NavLink></li>
+                                <li><NavLink to='/dashboard/adminhome'><FaHome className="text-xl"></FaHome> Admin Home</NavLink></li>
+                                <li><NavLink to='/dashboard/addaclass'><FaWallet className="text-xl"></FaWallet>Add A Class</NavLink></li>
+                                <li><NavLink to='/dashboard/allusers'><FaUsers className="text-xl"></FaUsers> All Users</NavLink></li>
+                                <li><NavLink to='/dashboard/myclass'>
+                                    <div className="indicator">
+                                        <span className="indicator-item badge badge-secondary -left-2 top-1">{booking?.length || 0}+</span>
+                                        <FaShoppingCart className="text-2xl mr-5"></FaShoppingCart>
+                                    </div> My Class</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard'><FaHome></FaHome> User Home</NavLink></li>
                                 <li><NavLink to='/dashboard'>
@@ -42,7 +48,7 @@ const Dashboard = () => {
 
                         <div className="divider"></div>
 
-                        <li><NavLink to='/'><FaHome></FaHome>Home</NavLink></li>
+                        <li><NavLink to='/'><FaHome className="text-xl"></FaHome>Home</NavLink></li>
                         <li><NavLink to='/classespage'>Classes Page</NavLink></li>
                         <li><NavLink to='/instructorspage'>Instructors Page</NavLink></li>
                     </ul>

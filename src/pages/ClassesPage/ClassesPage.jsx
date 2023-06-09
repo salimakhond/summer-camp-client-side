@@ -1,18 +1,9 @@
-// import { useEffect, useState } from "react";
 import Classes from "./Classes";
 import useClasses from "../../hooks/useClasses";
 
 
 const ClassesPage = () => {
     const [classes] = useClasses();
-
-
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/classes')
-    //         .then(res => res.json())
-    //         .then(data => setClasses(data))
-    // }, [])
-
 
     return (
         <div className="px-5 my-10">

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const Register = () => {
 
@@ -148,6 +149,7 @@ const Register = () => {
                         <p className='my-5 text-center'>All Ready Have An Account ?
                             <Link className='text-orange-500 font-bold ml-3' to='/login'>Login</Link>
                         </p>
+                        <SocialLogin></SocialLogin>
                         <p className="text-success text-center">{success}</p>
                         <p className="text-error text-center">{registerError}</p>
                     </div>

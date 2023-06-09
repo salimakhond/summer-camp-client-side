@@ -8,6 +8,7 @@ import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import Dashboard from "../layout/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddAClass from "../pages/Dashboard/AddAClass/AddAClass";
+import MyClass from "../pages/Dashboard/MyClass/MyClass";
 
 const router = createBrowserRouter([
     {
@@ -45,10 +46,10 @@ const router = createBrowserRouter([
             //     path: 'userhome',
             //     element:<UserHome></UserHome>
             // },
-            // {
-            //     path: 'mycart',
-            //     element: <MyCart></MyCart>
-            // },
+            {
+                path: 'myclass',
+                element: <MyClass></MyClass>
+            },
             // // admin routes
             // {
             //     path: 'adminhome',

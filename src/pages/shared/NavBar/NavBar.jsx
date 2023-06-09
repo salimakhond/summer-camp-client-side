@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { FaUserCircle } from 'react-icons/fa';
+import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
+import useBooking from "../../../hooks/useBooking";
 
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const [booking] = useBooking();
 
     const handleLogout = () => {
         logOut()
@@ -23,6 +25,13 @@ const NavBar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/classespage'>Classes Page</Link></li>
         <li><Link to='/instructorspage'>Instructors Page</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><Link to='/dashboard/mycart'>
+            <div className="indicator">
+                <span className="indicator-item badge badge-secondary -left-2">{booking?.length || 0}+</span>
+                <FaShoppingCart className="text-2xl"></FaShoppingCart>
+            </div>
+        </Link></li>
         {
             user?.email ? <>
             </> : <></>

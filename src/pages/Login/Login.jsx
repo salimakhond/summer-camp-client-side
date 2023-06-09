@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 // import { saveUser } from "../../api/saveUser";
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
-    const { logIn, googleSignIn } = useContext(AuthContext);
+    const { logIn } = useContext(AuthContext);
 
     const [error, setError] = useState('');
 
@@ -41,38 +42,6 @@ const Login = () => {
             })
     };
 
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                const logInUser = result.user;
-                console.log(logInUser);
-
-                const saveUser = { name: logInUser.displayName, email: logInUser.email }
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(saveUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data)
-                        navigate(from, { replace: true });
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User Login Successful',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    })
-            })
-            .catch(error => {
-                console.log('error', error.message);
-            })
-    }
 
     return (
         <div className="px-5 py-[50px] md:py-[80px] lg:py-[130px] bg-white">
@@ -112,12 +81,7 @@ const Login = () => {
                     <p className='my-5 text-center'>New to Toy Marketplace?
                         <Link className='text-orange-500 font-bold ml-3' to='/register'>Register</Link>
                     </p>
-                    <div className="divider">OR</div>
-                    <div className="text-center">
-                        <button onClick={handleGoogleSignIn} className=" btn btn-circle btn-outline btn-error hover:text-white">
-                            <FaGoogle></FaGoogle>
-                        </button>
-                    </div>
+                    <SocialLogin></SocialLogin>
                     <p className="text-error text-center">{error}</p>
                 </div>
             </div>

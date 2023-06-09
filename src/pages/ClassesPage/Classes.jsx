@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useBooking from "../../hooks/useBooking";
 
 const Classes = ({ classItem }) => {
     const { _id, image, name, instructor, seats, price } = classItem;
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const [, refetch] = useBooking();
 
     const handleBookingClass = (classItem) => {
         if (user && user.email) {
@@ -24,7 +26,7 @@ const Classes = ({ classItem }) => {
                 .then(data => {
                     console.log(data)
                     if (data.insertedId) {
-                        // refetch(); // refetch cart to update the number of items in the cart
+                        refetch();
                         Swal.fire(
                             'Your item added successfully!',
                             'You clicked the button!',
