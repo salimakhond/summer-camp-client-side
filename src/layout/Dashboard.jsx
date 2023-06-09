@@ -33,24 +33,19 @@ const Dashboard = () => {
 
                         {
                             isAdmin ? <>
-                                <li><NavLink to='/dashboard'><FaHome className="text-xl"></FaHome> Admin Home</NavLink></li>
-                                <li><NavLink to='/dashboard/allusers'><FaUsers className="text-xl"></FaUsers> All Users</NavLink></li>
+                                <li><NavLink to='/dashboard/allusers'><FaUsers className="text-xl"></FaUsers> Manage Users</NavLink></li>
 
                             </> : isInstructor ? <>
-                                <li><NavLink to='/dashboard'><FaHome></FaHome> Instructor Home</NavLink></li>
                                 <li><NavLink to='/dashboard/addaclass'><FaWallet className="text-xl"></FaWallet>Add A Class</NavLink></li>
                             </> : <>
-                                <li><NavLink to='/dashboard'><FaHome></FaHome> Student Home</NavLink></li>
                                 <li><NavLink to='/dashboard/myclass'>
                                     <div className="indicator">
                                         <span className="indicator-item badge badge-secondary -left-2 top-1">{booking?.length || 0}+</span>
                                         <FaShoppingCart className="text-2xl mr-5"></FaShoppingCart>
-                                    </div> My Class</NavLink></li>
+                                    </div> My Selected Classes</NavLink></li>
                                 <li><NavLink to='/'><FaWallet></FaWallet> Payment History</NavLink></li>
                             </>
                         }
-
-
 
                         <div className="divider"></div>
 

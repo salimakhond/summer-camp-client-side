@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
-import useBooking from "../../../hooks/useBooking";
+import { FaUserCircle } from 'react-icons/fa';
+import useInstructor from "../../../hooks/useInstructor";
+import useAdmin from "../../../hooks/useAdmin";
 
 
 
 const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    const [booking] = useBooking();
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     const handleLogout = () => {
         logOut()
@@ -19,22 +21,30 @@ const NavBar = () => {
             })
     }
 
-
-
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/classespage'>Classes Page</Link></li>
         <li><Link to='/instructorspage'>Instructors Page</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
-        <li><Link to='/dashboard/mycart'>
-            <div className="indicator">
-                <span className="indicator-item badge badge-secondary -left-2">{booking?.length || 0}+</span>
-                <FaShoppingCart className="text-2xl"></FaShoppingCart>
-            </div>
-        </Link></li>
         {
-            user?.email ? <>
-            </> : <></>
+            isAdmin && (
+                <li>
+                    <Link to="/dashboard/allusers">Dashboard</Link>
+                </li>
+            )
+        }
+        {
+            isInstructor && (
+                <li>
+                    <Link to="/dashboard/addaclass">Dashboard</Link>
+                </li>
+            )
+        }
+        {
+            !isAdmin && !isInstructor && (
+                <li>
+                    <Link to="/dashboard/myclass">Dashboard</Link>
+                </li>
+            )
         }
     </>
     return (
