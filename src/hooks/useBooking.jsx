@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
+import useAxiosSecure from './useAxiosSecure';
 
 
 const useBooking = () => {
-    const { user } = useContext(AuthContext);
-
+    const { user, loading } = useContext(AuthContext);
+    const [axiosSecure] = useAxiosSecure();
+    
     const { refetch, data: booking = [] } = useQuery({
         queryKey: ['booking', user?.email],
-        // enabled: !loading,
+        enabled: !loading,
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/booking?email=${user?.email}`)
-            return res.json();
+            const res = await axiosSecure(`/booking?email=${user?.email}`)
+            return res.data;
         },
 
     })
