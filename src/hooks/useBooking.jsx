@@ -11,7 +11,7 @@ const useBooking = () => {
         // enabled: !loading,
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/booking?email=${user?.email}`)
-            return res.json()
+            return res.json();
         },
 
     })

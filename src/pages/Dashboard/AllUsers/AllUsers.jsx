@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUsers } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const AllUsers = () => {
-    // const users = true;
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:5000/users")
-            .then((res) => res.json())
-            .then((data) => setUserData(data));
-    }, []);
-    // console.log(userData);
+
+    const { data: userData = [], refetch } = useQuery(['users'], async () => {
+        const res = await fetch("http://localhost:5000/users")
+        return res.json();
+    })
+    console.log(userData)
 
     const handleMakeUpdate = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
@@ -19,15 +17,7 @@ const AllUsers = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.modifiedCount) {
-                    // User is now an admin
-                    // Update the user's role in the userData state
-                    const updatedData = userData.map((item) => {
-                        if (item._id === user._id) {
-                            return { ...item, role: 'admin' };
-                        }
-                        return item;
-                    });
-                    setUserData(updatedData);
+                    refetch();
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -46,15 +36,7 @@ const AllUsers = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.modifiedCount) {
-                    // User is now an instructor
-                    // Update the user's role in the userData state
-                    const updatedData = userData.map((item) => {
-                        if (item._id === user._id) {
-                            return { ...item, role: 'instructor' };
-                        }
-                        return item;
-                    });
-                    setUserData(updatedData);
+                    refetch();
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -84,7 +66,7 @@ const AllUsers = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
-                            setUserData((prevData) => prevData.filter((u) => u._id !== user._id));
+                            refetch();
                             Swal.fire(
                                 'Deleted!',
                                 'Your file has been deleted.',
