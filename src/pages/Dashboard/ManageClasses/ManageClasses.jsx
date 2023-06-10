@@ -23,7 +23,7 @@ const ManageClasses = () => {
                     refetch();
                     Swal.fire({
                         position: "top-end",
-                        icon: "success",
+                        icon: "warning",
                         title: "Class has been Denied",
                         showConfirmButton: false,
                         timer: 1500,
@@ -35,20 +35,21 @@ const ManageClasses = () => {
         fetch(`http://localhost:5000/instructorsClasses/approved/${classItem?._id}`, {
             method: "PATCH",
         })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount) {
-                    refetch();
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Class has been Approved",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            });
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.success) {
+                refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Class has been approved & Add classes page",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        });
     };
+    
 
     return (
         <div>
