@@ -40,7 +40,7 @@ const NavBar = () => {
             )
         }
         {
-            !isAdmin && !isInstructor && (
+           user && !isAdmin && !isInstructor && (
                 <li>
                     <Link to="/dashboard/myclass">Dashboard</Link>
                 </li>
