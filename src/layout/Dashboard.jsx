@@ -43,7 +43,7 @@ const Dashboard = () => {
                                         <span className="indicator-item badge badge-secondary -left-2 top-1">{booking?.length || 0}+</span>
                                         <FaShoppingCart className="text-2xl mr-5"></FaShoppingCart>
                                     </div> My Selected Classes</NavLink></li>
-                                <li><NavLink to='/'><FaWallet></FaWallet> Payment History</NavLink></li>
+                                <li><NavLink to='/'><FaWallet></FaWallet> Payment</NavLink></li>
                             </>
                         }
 

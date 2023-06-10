@@ -12,6 +12,7 @@ import MyClass from "../pages/Dashboard/MyClass/MyClass";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -49,11 +50,6 @@ const router = createBrowserRouter([
                 path: 'myclass',
                 element: <MyClass></MyClass>
             },
-            // // admin routes
-            // {
-            //     path: 'adminhome',
-            //     element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-            // },
             {
                 path: 'allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
@@ -63,16 +59,12 @@ const router = createBrowserRouter([
                 element: <InstructorRoute><AddAClass></AddAClass></InstructorRoute>
 
             },
-            // {
-            //     path: 'manageitems',
-            //     element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`)
 
-            // },
-            // {
-            //     path: '/dashboard/payment',
-            //     element: <Payment></Payment>
-
-            // }
+            }
         ]
     }
 ]);

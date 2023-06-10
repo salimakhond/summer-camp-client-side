@@ -86,7 +86,7 @@ const MyClass = () => {
                                 <button onClick={() => handleDelete(item)} className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
                             </td>
                             <td className='text-center'>
-                                <Link to='/dashboard/payment'><button className="btn bg-[#1867FE] text-white">Payment</button></Link>
+                                <Link to={`/dashboard/payment/${item._id}`}><button className="btn bg-[#1867FE] text-white">Payment</button></Link>
                             </td>
                         </tr>)}
 
