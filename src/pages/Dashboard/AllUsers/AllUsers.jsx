@@ -38,6 +38,7 @@ const AllUsers = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.modifiedCount) {
+
                     refetch();
                     Swal.fire({
                         position: 'top-end',
@@ -46,6 +47,14 @@ const AllUsers = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    fetch('http://localhost:5000/instructors', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(res => res.json()).then(data => console.log(data))
                 }
             });
     };

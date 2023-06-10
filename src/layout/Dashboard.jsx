@@ -34,16 +34,19 @@ const Dashboard = () => {
                         {
                             isAdmin ? <>
                                 <li><NavLink to='/dashboard/allusers'><FaUsers className="text-xl"></FaUsers> Manage Users</NavLink></li>
+                                <li><NavLink to='/dashboard/manageclasses'><FaUsers className="text-xl"></FaUsers> Manage Classes</NavLink></li>
 
                             </> : isInstructor ? <>
                                 <li><NavLink to='/dashboard/addaclass'><FaWallet className="text-xl"></FaWallet>Add A Class</NavLink></li>
+                                <li><NavLink to='/dashboard/InstructorMyClass'>My Class</NavLink></li>
                             </> : <>
                                 <li><NavLink to='/dashboard/myclass'>
                                     <div className="indicator">
                                         <span className="indicator-item badge badge-secondary -left-2 top-1">{booking?.length || 0}+</span>
                                         <FaShoppingCart className="text-2xl mr-5"></FaShoppingCart>
                                     </div> My Selected Classes</NavLink></li>
-                                <li><NavLink to='/'><FaWallet></FaWallet> Payment</NavLink></li>
+                                <li><NavLink to='/dashboard/myenrolledclasses'>My Enrolled Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/paymentHistory'>My Payment History</NavLink></li>
                             </>
                         }
 

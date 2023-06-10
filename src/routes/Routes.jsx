@@ -13,6 +13,10 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import MyEnrolledClasses from "../pages/Dashboard/MyEnrolledClasses/MyEnrolledClasses";
+import MyPaymentHistory from "../pages/Dashboard/MyPaymentHistory/MyPaymentHistory";
+import InstructorMyClass from "../pages/Dashboard/InstructorMyClass/InstructorMyClass";
+import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 
 const router = createBrowserRouter([
     {
@@ -63,8 +67,23 @@ const router = createBrowserRouter([
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
                 loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`)
-
-            }
+            },
+            {
+                path: '/dashboard/myenrolledclasses',
+                element: <MyEnrolledClasses></MyEnrolledClasses>
+            },
+            {
+                path: '/dashboard/paymentHistory',
+                element: <MyPaymentHistory></MyPaymentHistory>
+            },
+            {
+                path: '/dashboard/InstructorMyClass',
+                element: <InstructorMyClass></InstructorMyClass>
+            },
+            {
+                path: '/dashboard/manageclasses',
+                element: <ManageClasses></ManageClasses>
+            },
         ]
     }
 ]);

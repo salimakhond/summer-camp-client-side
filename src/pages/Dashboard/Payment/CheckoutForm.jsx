@@ -82,6 +82,8 @@ const CheckoutForm = ({ price, booking }) => {
                 email: user?.email,
                 transactionId: paymentIntent.id,
                 price,
+                image : booking.image,
+                instructorName: booking.instructor,
                 date: new Date(),
                 cartItems: booking._id,
                 classBooking: booking.classId,

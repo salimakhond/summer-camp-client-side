@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const MyClass = () => {
     const [booking, refetch] = useBooking();
     const totalPrice = booking.reduce((sum, item) => item.price + sum, 0);
+    const price = parseFloat(totalPrice.toFixed(2))
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -43,7 +44,7 @@ const MyClass = () => {
         <div>
             <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">
                 <h3 className="text-2xl">Total Orders: {booking.length}</h3>
-                <h3 className="text-2xl">Total Price: $ {totalPrice}</h3>
+                <h3 className="text-2xl">Total Price: $ {price}</h3>
             </div>
 
             <div className="overflow-x-auto w-full">
@@ -52,7 +53,7 @@ const MyClass = () => {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Class IMAGE</th>
+                            <th>Class Image</th>
                             <th>Class Name</th>
                             <th>Instructor Name</th>
                             <th className='text-center'>Price</th>
@@ -86,7 +87,7 @@ const MyClass = () => {
                                 <button onClick={() => handleDelete(item)} className="btn bg-red-500 text-white hover:text-black"><FaTrashAlt></FaTrashAlt></button>
                             </td>
                             <td className='text-center'>
-                                <Link to={`/dashboard/payment/${item._id}`}><button className="btn bg-[#1867FE] text-white">Payment</button></Link>
+                                <Link to={`/dashboard/payment/${item._id}`}><button className="btn bg-[#1867FE] text-white hover:text-black">Payment</button></Link>
                             </td>
                         </tr>)}
 

@@ -28,7 +28,7 @@ const Register = () => {
                     .then(() => {
                         navigate('/login');
                         logOut();
-                        const saveUser = { name: data.name, email: data.email }
+                        const saveUser = { name: data.name, email: data.email, image: data.photoURL }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {
@@ -62,28 +62,28 @@ const Register = () => {
         <div className="px-5 py-[50px] md:py-[80px] lg:py-[130px] bg-white">
             <div className="">
                 <div className="card m-auto w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                    <div className="p-8">
                         <h2 className="text-5xl font-bold text-center">Register</h2>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form className="m-0" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" {...register("name", { required: true })} name='name' placeholder="Name" className="input input-bordered" required />
+                                <input type="text" {...register("name", { required: true })} name='name' placeholder="Name" className="input input-bordered m-0" required />
                                 {errors.name && <span className="text-error mt-2">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" {...register("email", { required: true })} name='email' placeholder="Email" className="input input-bordered" required />
+                                <input type="email" {...register("email", { required: true })} name='email' placeholder="Email" className="input input-bordered m-0" required />
                                 {errors.email && <span className="text-error mt-2">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo</span>
                                 </label>
-                                <input type="url" {...register("photoURL", { required: true })} name='photoURL' placeholder="Photo URL" className="input input-bordered" />
+                                <input type="url" {...register("photoURL", { required: true })} name='photoURL' placeholder="Photo URL" className="input input-bordered m-0" />
                                 {errors.photoURL && <span className="text-error mt-2">Photo URL is required</span>}
                             </div>
                             <div className="form-control">
@@ -95,17 +95,17 @@ const Register = () => {
                                         required: true,
                                         minLength: 6,
                                         pattern: /^(?=.*[A-Z])(?=.*[!@#$&*]).*$/,
-                                    })} name='password' placeholder="Password" className="input input-bordered w-full pr-10" />
+                                    })} name='password' placeholder="Password" className="input input-bordered w-full pr-10 m-0" />
                                     {errors.password?.type === 'required' && <p className="text-error mt-2">Password is required</p>}
                                     {errors.password?.type === 'minLength' && <p className="text-error mt-2">Your password less than 6 characters</p>}
                                     {errors.password?.type === 'pattern' && <p className="text-error mt-2">Your password must have one capital letter and one special character.</p>}
-                                    <button
+                                    <div
                                         type="button"
-                                        className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                                        className="p-2 absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
                                         onClick={() => setShowPassword(show => !show)}
                                     >
                                         {showPassword ? <FaEye /> : <FaEyeSlash />}
-                                    </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="form-control">
@@ -123,26 +123,26 @@ const Register = () => {
                                         })}
                                         name="confirmPassword"
                                         placeholder="Confirm Password"
-                                        className="input input-bordered w-full pr-10"
+                                        className="input input-bordered w-full pr-10 m-0"
                                         required
                                     />
                                     {errors.confirmPassword && (
                                         <p className="text-error mt-2">Passwords do not match</p>
                                     )}
-                                    <button
-                                        type="button"
-                                        className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                                    <div
+                                        className="p-2 absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
                                         onClick={() => setShowConfirmPassword(show => !show)}
                                     >
                                         {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
-                                    </button>
+                                    </div>
+                                    
                                 </div>
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover mt-3">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Sign In" />
+                                <input className="btn btn-primary m-0" type="submit" value="Sign In" />
                             </div>
                         </form>
                         <p className='my-5 text-center'>All Ready Have An Account ?

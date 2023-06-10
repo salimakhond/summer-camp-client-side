@@ -9,7 +9,7 @@ const AddAClass = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        fetch('http://localhost:5000/classes', {
+        fetch('http://localhost:5000/instructorsClasses', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

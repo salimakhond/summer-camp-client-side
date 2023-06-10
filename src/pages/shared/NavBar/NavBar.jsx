@@ -48,8 +48,8 @@ const NavBar = () => {
         }
     </>
     return (
-        <div className="px-5">
-            <div className="navbar bg-base-100 container m-auto px-0 h-20">
+        <div className="px-5 bg-base-100 ">
+            <div className="navbar container m-auto px-0 h-20">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost pl-0 lg:hidden">
