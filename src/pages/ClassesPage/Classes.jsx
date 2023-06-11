@@ -7,14 +7,13 @@ import useInstructor from "../../hooks/useInstructor";
 import useAdmin from "../../hooks/useAdmin";
 
 const Classes = ({ classItem }) => {
-    const { _id, image, name, instructor, seats, price } = classItem;
+    const { _id, image, name, instructor, price } = classItem;
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const [, refetch] = useBooking();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
-    const [selectedSeats, setSelectedSeats] = useState(seats);
     const [isSelectItem, setIsSelectItem] = useState(false);
 
     const handleBookingClass = () => {
@@ -42,7 +41,7 @@ const Classes = ({ classItem }) => {
         //   return;
         // }
 
-        if (selectedSeats === 0) {
+        if (classItem.seats === 0) {
             return;
         }
 
@@ -66,7 +65,6 @@ const Classes = ({ classItem }) => {
             .then((data) => {
                 if (data.insertedId) {
                     setIsSelectItem(true);
-                    setSelectedSeats(selectedSeats - 1);
                     refetch();
                     Swal.fire(
                         "Your item select successfully!",
@@ -79,16 +77,16 @@ const Classes = ({ classItem }) => {
 
     return (
         <div>
-            <div className={`bg-base-200 rounded-lg ${selectedSeats === 0 ? "text-white bg-red-500" : ""}`}>
+            <div className={`bg-base-200 rounded-lg ${classItem.seats === 0 ? "text-white bg-red-500" : ""}`}>
                 <div className="p-5">
                     <div className="w-full">
                         <img className="rounded-lg h-[300px]" src={image} alt="classItemImg" />
                     </div>
                     <div className="w-full mt-5">
-                        <h2 className={`text-2xl text-[#181D4E] font-bold ${selectedSeats === 0 ? "text-white" : ""}`}>{name}</h2>
-                        <p className={`text-[#646672] my-3 text-lg font-semibold ${selectedSeats === 0 ? "text-white" : ""}`}>Instructor Name: {instructor}</p>
-                        <p className={`text-[#646672] my-3 text-lg font-semibold ${selectedSeats === 0 ? "text-white" : ""}`} > Available seats: {selectedSeats} </p>
-                        <p className={`text-[#646672] my-3 text-lg font-semibold ${selectedSeats === 0 ? "text-white" : ""}`}>Price: ${price}</p>
+                        <h2 className={`text-2xl text-[#181D4E] font-bold ${classItem.seats === 0 ? "text-white" : ""}`}>{name}</h2>
+                        <p className={`text-[#646672] my-3 text-lg font-semibold ${classItem.seats === 0 ? "text-white" : ""}`}>Instructor Name: {instructor}</p>
+                        <p className={`text-[#646672] my-3 text-lg font-semibold ${classItem.seats === 0 ? "text-white" : ""}`} > Available seats: {classItem.seats} </p>
+                        <p className={`text-[#646672] my-3 text-lg font-semibold ${classItem.seats === 0 ? "text-white" : ""}`}>Price: ${price}</p>
                         <button
                             onClick={handleBookingClass}
                             disabled={

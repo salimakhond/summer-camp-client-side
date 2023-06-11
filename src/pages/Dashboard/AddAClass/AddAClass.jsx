@@ -31,8 +31,9 @@ const AddAClass = () => {
     };
     return (
         <div className="px-5">
-            <div className="container m-auto py-[50px] md:py-[80px] lg:py-[130px] bg-white">
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="container m-auto py-[30px] md:py-[50px] lg:py-[80px] bg-white">
+                <h3 className="font-semibold text-2xl text-center mb-5">Add A New Class</h3>
+                <form className="my-0" onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {errors.exampleRequired && <span>This field is required</span>}
                         <div className="form-control">
@@ -77,21 +78,31 @@ const AddAClass = () => {
                         <div className="form-control">
                             <input
                                 className="input input-bordered"
-                                {...register("status")}
-                                placeholder="Status"
-                                type="text"
-                                value={'pending'}
-                            />
-                        </div>
-                        <div className="form-control">
-                            <input
-                                className="input input-bordered"
                                 value={user?.email}
                                 {...register("email")}
                                 placeholder="your email"
                                 type="email"
                             />
 
+                        </div>
+                        <div className="form-control hidden">
+                            <input
+                                className="input input-bordered"
+                                {...register("status")}
+                                placeholder="Status"
+                                type="text"
+                                value={'pending'}
+                            />
+                        </div>
+
+                        <div className="form-control hidden">
+                            <input
+                                className="input input-bordered"
+                                {...register("enrolled", { required: true })}
+                                placeholder="Enrolled"
+                                type="number"
+                                value={'0'}
+                            />
                         </div>
                     </div>
                     <div className="form-control mt-6">

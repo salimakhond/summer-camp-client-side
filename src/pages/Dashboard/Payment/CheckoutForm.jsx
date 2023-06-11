@@ -77,6 +77,7 @@ const CheckoutForm = ({ price, booking }) => {
 
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id)
+
             // save payment information
             const payment = {
                 email: user?.email,
@@ -93,6 +94,7 @@ const CheckoutForm = ({ price, booking }) => {
             axiosSecure.post('/payments', payment)
                 .then(res => {
                     // console.log(res.data)
+                    
                     if (res.data.insertResult.acknowledged) {
                         Swal.fire({
                             position: 'top-end',

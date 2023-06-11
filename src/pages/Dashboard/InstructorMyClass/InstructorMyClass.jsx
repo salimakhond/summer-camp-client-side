@@ -9,7 +9,7 @@ const InstructorMyClass = () => {
     const { user } = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
 
-    const { data: instructorsClasses = [], refetch } = useQuery(['instructorsClasses'], async () => {
+    const { data: instructorsClasses = [] } = useQuery(['instructorsClasses'], async () => {
         const res = await axiosSecure.get(`/instructorsClasses/${user.email}`)
         return res.data;
     })
@@ -69,12 +69,10 @@ const InstructorMyClass = () => {
                                 {item.status}
                             </td>
                             <td className='text-center'>
-                                {/* TODO: */}
-                                {'Total Enrolled Students'}
+                                {item?.enrolled}
                             </td>
                             <td className='text-center'>
-                                {/* TODO: */}
-                                {'Feedback'}
+                                {item?.feedback}
                             </td>
                             <td className='text-center'>
                                 <Link to={`/dashboard/payment/${item._id}`}><button className="btn bg-[#1867FE] btn-sm text-white hover:text-black">Update</button></Link>

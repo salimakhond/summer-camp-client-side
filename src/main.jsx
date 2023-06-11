@@ -4,6 +4,7 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './routes/Routes.jsx'
 import AuthProvider from './providers/AuthProvider'
+import 'sweetalert2/dist/sweetalert2.css';
 import {
   QueryClient,
   QueryClientProvider,
