@@ -41,7 +41,7 @@ const MyClass = () => {
 
 
     return (
-        <div>
+        <div className="pb-20 pt-10 pl-10">
             <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">
                 <h3 className="text-2xl">Total Orders: {booking.length}</h3>
                 <h3 className="text-2xl">Total Price: $ {price}</h3>

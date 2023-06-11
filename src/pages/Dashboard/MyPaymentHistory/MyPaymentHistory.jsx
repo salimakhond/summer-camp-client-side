@@ -10,13 +10,10 @@ const MyPaymentHistory = () => {
             .then(res => res.json())
             .then(data => setPaymentHistory(data))
     }, [])
-    console.log(paymentHistory)
+    
     return (
-        <div>
-            
+        <div className="pb-20 pt-10 lg:pl-10">
             <h3 className="font-semibold text-3xl mb-5 text-center">My Payment History</h3>
-
-
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     {/* head */}

@@ -37,10 +37,6 @@ const Classes = ({ classItem }) => {
             return;
         }
 
-        // if (classItem.seats === 0 || isSelectItem) {
-        //   return;
-        // }
-
         if (classItem.seats === 0) {
             return;
         }
@@ -80,7 +76,7 @@ const Classes = ({ classItem }) => {
             <div className={`bg-base-200 rounded-lg ${classItem.seats === 0 ? "text-white bg-red-500" : ""}`}>
                 <div className="p-5">
                     <div className="w-full">
-                        <img className="rounded-lg h-[300px]" src={image} alt="classItemImg" />
+                        <img className="rounded-lg w-full h-[300px]" src={image} alt="classItemImg" />
                     </div>
                     <div className="w-full mt-5">
                         <h2 className={`text-2xl text-[#181D4E] font-bold ${classItem.seats === 0 ? "text-white" : ""}`}>{name}</h2>

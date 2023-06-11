@@ -16,7 +16,7 @@ const InstructorMyClass = () => {
     console.log(instructorsClasses)
 
     return (
-        <div>
+        <div className="pb-20 pt-10 pl-10">
             <h3 className="font-semibold text-2xl text-center">Instructor My Class</h3>
 
             <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">

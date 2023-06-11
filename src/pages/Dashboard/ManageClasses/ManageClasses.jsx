@@ -15,7 +15,6 @@ const ManageClasses = () => {
             return res.data;
         }
     );
-    console.log(manageClasses);
 
     const handleDenied = (classItem) => {
         fetch(`http://localhost:5000/instructorsClasses/denied/${classItem?._id}`, {
@@ -95,7 +94,7 @@ const ManageClasses = () => {
 
 
     return (
-        <div>
+        <div className="pb-20 pt-10 pl-10">
             <h3 className="font-semibold text-2xl text-center">Manage Classes</h3>
             <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">
                 <h3 className="text-2xl">Total Classes: {manageClasses.length}</h3>

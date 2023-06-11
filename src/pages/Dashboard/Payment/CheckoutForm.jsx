@@ -111,7 +111,7 @@ const CheckoutForm = ({ price, booking }) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="m-0" onSubmit={handleSubmit}>
                 <CardElement
                     options={{
                         style: {

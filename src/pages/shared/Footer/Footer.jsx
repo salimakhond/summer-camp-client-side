@@ -1,6 +1,6 @@
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import sportsSchoolImg from '../../../assets/sportsschool.png'
 
 const Footer = () => {
     return (
@@ -8,7 +8,9 @@ const Footer = () => {
             <div className='container m-auto'>
                 <div className='md:flex md:flex-wrap lg:flex-nowrap lg:gap-24 container bg-[#1A1919] text-white border-b border-[#7E90FE]'>
                     <div className='md:w-6/12 lg:w-4/12 mb-10'>
-                        <Link to='/'><img className="w-28 mb-5" src="https://i.ibb.co/qpyGtmK/toyStore.png" alt="" /></Link>
+                        <Link to='/'>
+                            <img className="w-20 mb-5" src={sportsSchoolImg} alt="" />
+                        </Link>
                         <p className='mb-5 md:mr-10 lg:mr-0  text-[#ffffffb3]'>There are many variations of passages of Lorem Ipsum , but the majority have suffered alteration in some form.</p>
 
                         <div className="flex gap-3">
@@ -28,13 +30,14 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className='md:w-6/12 lg:w-2/12 mb-10'>
-                        <h4 className='mb-4'>Product</h4>
+                        <h4 className='mb-4'>Sports Product</h4>
                         <ul className='text-[#ffffffb3]'>
-                            <li className='mb-4'>Toys</li>
-                            <li className='mb-4'>Gadget</li>
-                            <li className='mb-4'>Cartoon Kit</li>
-                            <li className='mb-4'>Blocks Build Toy</li>
-                            <li className='mb-4'>Games</li>
+                            <li className='mb-4'>Tennis Product</li>
+                            <li className='mb-4'>Football Product</li>
+                            <li className='mb-4'>Volleyball Product</li>
+                            <li className='mb-4'>Badminton Product</li>
+                            <li className='mb-4'>Basketball Product</li>
+                            <li className='mb-4'>Golf Product</li>
                         </ul>
                     </div>
                     <div className='md:w-6/12 lg:w-2/12 mb-10'>
@@ -56,8 +59,8 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className='md:flex justify-between text-center text-[#ffffff66] pt-12'>
-                    <p className='mb-4 md:mb-0'><span>&copy;</span> 2023 ToyStore. All Rights Reserved</p>
-                    <p>Powered by ToyStore</p>
+                    <p className='mb-4 md:mb-0'><span>&copy;</span> 2023 Sports School Camp. All Rights Reserved</p>
+                    <p>Powered by Sports School Camp</p>
                 </div>
             </div>
 

@@ -14,7 +14,7 @@ const MyEnrolledClasses = () => {
 
 
     return (
-        <div>
+        <div className="pb-20 pt-10 pl-10">
             <h3 className="font-semibold text-3xl mb-5 text-center">My Enrolled Classes</h3>
 
             <div className="uppercase font-semibold mb-10 flex gap-3 items-center justify-between">
