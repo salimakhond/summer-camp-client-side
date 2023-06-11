@@ -59,6 +59,7 @@ const MyClass = () => {
                             <th className='text-center'>Price</th>
                             <th></th>
                             <th className='text-center'>Action</th>
+                            <th className='text-center'>Payment</th>
                         </tr>
                     </thead>
                     <tbody>

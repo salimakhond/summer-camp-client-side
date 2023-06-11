@@ -9,6 +9,10 @@ const AddAClass = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
+        data.seats = parseInt(data.seats);
+        data.price = parseFloat(data.price);
+        data.enrolled = parseInt(data.enrolled);
+
         fetch('http://localhost:5000/instructorsClasses', {
             method: 'POST',
             headers: {
@@ -65,6 +69,8 @@ const AddAClass = () => {
                                 {...register("price", { required: true })}
                                 placeholder="Price"
                                 type="number"
+                                step="0.01"  // Allow decimal values
+                                min="0"  // Minimum value (optional)
                             />
                         </div>
                         <div className="form-control">
