@@ -34,9 +34,8 @@ const MyPaymentHistory = () => {
                             <td>
                                 {index + 1}
                             </td>
-                            <td>
-                                {item.date}
-                            </td>
+                            <td>{new Date(item.date).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}</td>
+
                             <td>
                                 {item.transactionId}
                             </td>
