@@ -69,7 +69,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`)
+                loader: ({params}) => fetch(`https://summer-cump-school-server.vercel.app/booking/${params.id}`)
             },
             {
                 path: '/dashboard/myenrolledclasses',
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/updateclass/:id',
                 element: <UpdateClass></UpdateClass>,
-                loader: ({params}) => fetch(`http://localhost:5000/classes-by-id/${params.id}`)
+                loader: ({params}) => fetch(`https://summer-cump-school-server.vercel.app/classes-by-id/${params.id}`)
             }
         ]
     }

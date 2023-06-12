@@ -15,7 +15,7 @@ const UpdateClass = () => {
         data.price = parseFloat(data.price);
         data.enrolled = parseInt(data.enrolled);
 
-        fetch(`http://localhost:5000/classes-by-id/${_id}`, {
+        fetch(`https://summer-cump-school-server.vercel.app/classes-by-id/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

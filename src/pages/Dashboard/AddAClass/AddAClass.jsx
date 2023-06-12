@@ -13,7 +13,7 @@ const AddAClass = () => {
         data.price = parseFloat(data.price);
         data.enrolled = parseInt(data.enrolled);
 
-        fetch('http://localhost:5000/instructorsClasses', {
+        fetch('https://summer-cump-school-server.vercel.app/instructorsClasses', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

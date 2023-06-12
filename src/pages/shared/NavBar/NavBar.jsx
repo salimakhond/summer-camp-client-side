@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUserCircle } from 'react-icons/fa';
 import useInstructor from "../../../hooks/useInstructor";
@@ -12,10 +12,15 @@ const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogout = () => {
         logOut()
-            .then()
+            .then(() => {
+                navigate(from, { replace: true });
+            })
             .catch(error => {
                 console.log(error)
             })
@@ -78,8 +83,8 @@ const NavBar = () => {
                         </div>
                     }
                     {
-                        user ? <button style={{border: "1px solid"}} onClick={handleLogout} className="btn btn-outline mt-0 btn-primary ml-4">Log Out</button> : <Link to="/login">
-                            <button style={{border: "1px solid"}}  className="btn btn-outline btn-primary mt-0 ml-4">Login</button>
+                        user ? <button style={{ border: "1px solid" }} onClick={handleLogout} className="btn btn-outline mt-0 btn-primary ml-4">Log Out</button> : <Link to="/login">
+                            <button style={{ border: "1px solid" }} className="btn btn-outline btn-primary mt-0 ml-4">Login</button>
                         </Link>
                     }
                 </div>

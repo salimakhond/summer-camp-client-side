@@ -50,7 +50,7 @@ const Classes = ({ classItem }) => {
             email: user.email,
         };
 
-        fetch("http://localhost:5000/booking", {
+        fetch("https://summer-cump-school-server.vercel.app/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

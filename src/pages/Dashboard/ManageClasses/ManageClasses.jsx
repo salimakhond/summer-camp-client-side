@@ -17,7 +17,7 @@ const ManageClasses = () => {
     );
 
     const handleDenied = (classItem) => {
-        fetch(`http://localhost:5000/instructorsClasses/denied/${classItem?._id}`, {
+        fetch(`https://summer-cump-school-server.vercel.app/instructorsClasses/denied/${classItem?._id}`, {
             method: "PATCH",
         })
             .then((res) => res.json())
@@ -37,7 +37,7 @@ const ManageClasses = () => {
 
     const handleApproved = (classItem) => {
         fetch(
-            `http://localhost:5000/instructorsClasses/approved/${classItem?._id}`,
+            `https://summer-cump-school-server.vercel.app/instructorsClasses/approved/${classItem?._id}`,
             {
                 method: "PATCH",
             }
@@ -67,7 +67,7 @@ const ManageClasses = () => {
     };
 
     const handleFeedbackSubmit = (classItem, feedback) => {
-        fetch(`http://localhost:5000/instructorsClasses/feedback/${classItem._id}`, {
+        fetch(`https://summer-cump-school-server.vercel.app/instructorsClasses/feedback/${classItem._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -108,6 +108,7 @@ const ManageClasses = () => {
                             <th>Class Image</th>
                             <th>Class Name</th>
                             <th>Instructor Name</th>
+                            <th>Instructor email</th>
                             <th className="text-center">Price</th>
                             <th></th>
                             <th className="text-center">Seats</th>
@@ -135,6 +136,7 @@ const ManageClasses = () => {
                                 </td>
                                 <td>{item.name}</td>
                                 <td>{item.instructor}</td>
+                                <td>{item.email}</td>
                                 <td className="text-end">${item.price}</td>
                                 <td></td>
                                 <td className="text-center">{item.seats}</td>
