@@ -1,4 +1,4 @@
-import { FaHome, FaShoppingCart, FaUsers, FaWallet } from 'react-icons/fa';
+import { FaHome, FaShoppingCart } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useBooking from '../hooks/useBooking';
 import useAdmin from '../hooks/useAdmin';
@@ -33,12 +33,12 @@ const Dashboard = () => {
                                 <>
                                     <li>
                                         <NavLink to='/dashboard/allusers'>
-                                            <FaUsers className="text-xl" /> Manage Users
+                                            Manage Users
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink to='/dashboard/manageclasses'>
-                                            <FaUsers className="text-xl" /> Manage Classes
+                                            Manage Classes
                                         </NavLink>
                                     </li>
                                 </>
@@ -46,11 +46,11 @@ const Dashboard = () => {
                                 <>
                                     <li>
                                         <NavLink to='/dashboard/addaclass'>
-                                            <FaWallet className="text-xl" /> Add A Class
+                                            Add A Class
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/InstructorMyClass'>My Class</NavLink>
+                                        <NavLink to='/dashboard/instructormyclass'>My Class</NavLink>
                                     </li>
                                 </>
                             ) : (

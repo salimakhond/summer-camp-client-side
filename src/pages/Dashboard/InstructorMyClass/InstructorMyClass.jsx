@@ -13,7 +13,6 @@ const InstructorMyClass = () => {
         const res = await axiosSecure.get(`/instructorsClasses/${user.email}`)
         return res.data;
     })
-    console.log(instructorsClasses)
 
     return (
         <div className="pb-20 pt-10 pl-10">
@@ -75,7 +74,7 @@ const InstructorMyClass = () => {
                                 {item?.feedback}
                             </td>
                             <td className='text-center'>
-                                <Link to={`/dashboard/payment/${item._id}`}><button className="btn bg-[#1867FE] btn-sm text-white hover:text-black">Update</button></Link>
+                                <Link to={`/dashboard/updateclass/${item._id}`}><button className="btn bg-[#1867FE] btn-sm text-white hover:text-black">Update</button></Link>
                             </td>
                         </tr>)}
 

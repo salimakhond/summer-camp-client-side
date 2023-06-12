@@ -18,6 +18,7 @@ import MyPaymentHistory from "../pages/Dashboard/MyPaymentHistory/MyPaymentHisto
 import InstructorMyClass from "../pages/Dashboard/InstructorMyClass/InstructorMyClass";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
 
 const router = createBrowserRouter([
     {
@@ -79,13 +80,18 @@ const router = createBrowserRouter([
                 element: <MyPaymentHistory></MyPaymentHistory>
             },
             {
-                path: '/dashboard/InstructorMyClass',
+                path: '/dashboard/instructormyclass',
                 element: <InstructorMyClass></InstructorMyClass>
             },
             {
                 path: '/dashboard/manageclasses',
                 element: <ManageClasses></ManageClasses>
             },
+            {
+                path: '/dashboard/updateclass/:id',
+                element: <UpdateClass></UpdateClass>,
+                loader: ({params}) => fetch(`http://localhost:5000/classes-by-id/${params.id}`)
+            }
         ]
     }
 ]);

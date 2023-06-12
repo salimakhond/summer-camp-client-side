@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaUserCircle } from 'react-icons/fa';
 import useInstructor from "../../../hooks/useInstructor";
@@ -22,27 +22,27 @@ const NavBar = () => {
     }
 
     const navItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/classespage'>Classes Page</Link></li>
-        <li><Link to='/instructorspage'>Instructors Page</Link></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/classespage'>Classes Page</NavLink></li>
+        <li><NavLink to='/instructorspage'>Instructors Page</NavLink></li>
         {
             isAdmin && (
                 <li>
-                    <Link to="/dashboard/allusers">Dashboard</Link>
+                    <NavLink to="/dashboard/allusers">Dashboard</NavLink>
                 </li>
             )
         }
         {
             isInstructor && (
                 <li>
-                    <Link to="/dashboard/addaclass">Dashboard</Link>
+                    <NavLink to="/dashboard/addaclass">Dashboard</NavLink>
                 </li>
             )
         }
         {
             user && !isAdmin && !isInstructor && (
                 <li>
-                    <Link to="/dashboard/myclass">Dashboard</Link>
+                    <NavLink to="/dashboard/myclass">Dashboard</NavLink>
                 </li>
             )
         }
