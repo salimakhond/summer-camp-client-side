@@ -1,10 +1,13 @@
-import { FaHome, FaShoppingCart } from 'react-icons/fa';
+import { FaHome, FaShoppingCart, FaUserShield, FaUsers, FaUsersCog } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useBooking from '../hooks/useBooking';
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
 import NavBar from '../pages/shared/NavBar/NavBar';
 import Footer from '../pages/shared/Footer/Footer';
+import { BiAddToQueue } from "react-icons/bi";
+import { MdClass, MdPayments } from "react-icons/md";
+import { GiTiedScroll } from "react-icons/gi";
 
 const Dashboard = () => {
     const [booking] = useBooking();
@@ -32,25 +35,26 @@ const Dashboard = () => {
                             {isAdmin ? (
                                 <>
                                     <li>
-                                        <NavLink to='/dashboard/allusers'>
-                                            Manage Users
+                                    <NavLink to='/dashboard/allusers'>
+                                    <FaUsers className="text-2xl mr-5" /> Manage Users
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/manageclasses'>
-                                            Manage Classes
+                                    <NavLink to='/dashboard/manageclasses'>
+                                    <FaUsersCog className="text-2xl mr-5" /> Manage Classes
                                         </NavLink>
                                     </li>
                                 </>
                             ) : isInstructor ? (
                                 <>
                                     <li>
-                                        <NavLink to='/dashboard/addaclass'>
-                                            Add A Class
+                                    <NavLink to='/dashboard/addaclass'>
+                                    <BiAddToQueue className="text-2xl mr-5"></BiAddToQueue> Add A Class
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/instructormyclass'>My Class</NavLink>
+                                        <NavLink to='/dashboard/instructormyclass'>
+                                           <MdClass className="text-2xl mr-5"></MdClass> My Class</NavLink>
                                     </li>
                                 </>
                             ) : (
@@ -67,10 +71,12 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/myenrolledclasses'>My Enrolled Classes</NavLink>
+                                        <NavLink to='/dashboard/myenrolledclasses'>
+                                            <GiTiedScroll className="text-2xl mr-5"></GiTiedScroll> My Enrolled Classes</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/dashboard/paymentHistory'>My Payment History</NavLink>
+                                        <NavLink to='/dashboard/paymentHistory'>
+                                           <MdPayments className="text-2xl mr-5"></MdPayments> My Payment History</NavLink>
                                     </li>
                                 </>
                             )}
@@ -82,10 +88,10 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/classespage'>Classes Page</NavLink>
+                                <NavLink to='/classespage'><MdClass className="text-2xl mr-5"></MdClass> Classes Page</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/instructorspage'>Instructors Page</NavLink>
+                                <NavLink to='/instructorspage'><FaUserShield className="text-2xl mr-5"></FaUserShield>  Instructors Page</NavLink>
                             </li>
                         </ul>
                     </div>
