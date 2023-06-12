@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const MyEnrolledClasses = () => {
+    const { user } = useContext(AuthContext);
     const [enrolledClasses, setEnrolledClasses] = useState([]);
     const totalPrice = enrolledClasses.reduce((sum, item) => item.price + sum, 0);
     const price = parseFloat(totalPrice.toFixed(2))
 
     useEffect(() => {
-        fetch('https://summer-cump-school-server.vercel.app/payments')
+        fetch(`https://summer-cump-school-server.vercel.app/payments-by-email/${user?.email}`)
             .then(res => res.json())
             .then(data => setEnrolledClasses(data))
-    }, [])
+    }, [user])
 
 
     return (

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const MyPaymentHistory = () => {
-
+    const { user } = useContext(AuthContext);
     const [paymentHistory, setPaymentHistory] = useState([]);
 
     useEffect(() => {
-        fetch('https://summer-cump-school-server.vercel.app/payments')
+        fetch(`https://summer-cump-school-server.vercel.app/payments-by-email/${user?.email}`)
             .then(res => res.json())
             .then(data => setPaymentHistory(data))
-    }, [])
+    }, [user])
     
     return (
         <div className="pb-20 pt-10 lg:pl-10">

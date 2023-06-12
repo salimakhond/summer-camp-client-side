@@ -131,10 +131,10 @@ const CheckoutForm = ({ price, booking }) => {
                 <button className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>Pay</button>
             </form>
             {
-                cardError && <p className="text-error ml-32">{cardError}</p>
+                cardError && <p className="text-error mt-4">{cardError}</p>
             }
             {
-                transactionId && <p className="text-success ml-32">Transaction Complete: {transactionId}</p>
+                transactionId && <p className="text-success mt-4">Transaction Complete: {transactionId}</p>
             }
         </>
     );

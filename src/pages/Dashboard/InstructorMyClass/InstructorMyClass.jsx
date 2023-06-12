@@ -74,7 +74,11 @@ const InstructorMyClass = () => {
                                 {item?.feedback}
                             </td>
                             <td className='text-center'>
-                                <Link to={`/dashboard/updateclass/${item._id}`}><button className="btn bg-[#1867FE] btn-sm text-white hover:text-black">Update</button></Link>
+                                <Link to={`/dashboard/updateclass/${item._id}`}><button 
+                                disabled={
+                                    item.status === "pending" || item.status === "Denied"
+                                }
+                                className="btn bg-[#1867FE] btn-sm text-white hover:text-black">Update</button></Link>
                             </td>
                         </tr>)}
 
