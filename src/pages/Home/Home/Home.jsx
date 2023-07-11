@@ -4,6 +4,8 @@ import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
 import News from "../News/News";
 import { motion } from "framer-motion";
+import AboutUs from "../AboutUs/AboutUs";
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 
 const Home = () => {
 
@@ -18,6 +20,7 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
+            <AboutUs></AboutUs>
             <div className="px-5 py-[50px] md:py-[80px] lg:py-[130px]">
                 <div className="container m-auto">
                     <div className="w-2/3 m-auto text-center mb-14">
@@ -57,6 +60,7 @@ const Home = () => {
                     </motion.div>
                 </div>
             </div>
+            <WhyChooseUs></WhyChooseUs>
             <PopularInstructors></PopularInstructors>
             <News></News>
         </div>
